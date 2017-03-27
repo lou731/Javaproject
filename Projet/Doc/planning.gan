@@ -64,7 +64,6 @@
             <depend id="9" type="2" difference="0" hardness="Strong"/>
         </task>
         <task id="10" name="Livrable" color="#8cb6ce" meeting="false" start="2017-04-04" duration="1" complete="0" thirdDate="2017-03-30" thirdDate-constraint="1" expand="true"/>
-        <task id="29" name="tâche_29" meeting="false" start="2017-03-27" duration="1" complete="0" expand="true"/>
     </tasks>
     <resources>
         <resource id="0" name="Tristan" function="Default:0" contacts="" phone=""/>
