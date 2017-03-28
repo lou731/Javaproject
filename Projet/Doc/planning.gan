@@ -36,7 +36,7 @@
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
         <task id="0" name="Cahier des charges" color="#8cb6ce" meeting="false" start="2017-03-28" duration="1" complete="0" expand="true"/>
-        <task id="1" name="Diagramme Use Case UML" color="#8cb6ce" meeting="false" start="2017-03-28" duration="1" complete="0" expand="true"/>
+        <task id="1" name="Diagramme Use Case UML" color="#8cb6ce" meeting="false" start="2017-03-28" duration="1" complete="1" expand="true"/>
         <task id="3" name="Planning prévisionnel" color="#8cb6ce" meeting="false" start="2017-03-27" duration="1" complete="0" expand="true">
             <depend id="0" type="2" difference="0" hardness="Strong"/>
             <depend id="1" type="2" difference="0" hardness="Strong"/>
