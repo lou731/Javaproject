@@ -1,9 +1,11 @@
 package carnetadresses.Controllers;
 
-import carnetadresses.AccessData.IAccessData;
+import carnetadresses.AccessDatas.IAccessData;
+import carnetadresses.AccessDatas.AccesData;
 import carnetadresses.Models.Contact;
 import carnetadresses.Views.Action;
 import carnetadresses.Views.HomeForm;
+import java.sql.SQLException;
 import java.util.*;
 
 /**
@@ -11,22 +13,28 @@ import java.util.*;
  */
 public class ControllerContact {
 
-    /**
-     * Default constructor
-     */
-    public ControllerContact() {
-    }
-
-    /**
-     * 
-     */
-    public IAccessData accessData;
-
+    private IAccessData accessData;
+    
     /**
      * 
      */
     private HomeForm mainForm;
-
+    
+    /**
+     * Default constructor
+     * @throws java.sql.SQLException
+     */
+    public ControllerContact() throws SQLException {
+        this(new AccesData());
+    }
+    
+    /**
+     * Default constructor
+     * @param accessData
+     */
+    public ControllerContact(IAccessData accessData) {
+        this.accessData = accessData;
+    }
 
     /**
      * 

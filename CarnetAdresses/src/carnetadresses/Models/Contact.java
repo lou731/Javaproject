@@ -1,18 +1,11 @@
 package carnetadresses.Models;
 
-import java.util.*;
-
 /**
- * 
+ * Model for contact
  */
 public class Contact {
 
-    /**
-     * Default constructor
-     */
-    public Contact() {
-    }
-
+    private long id;
     /**
      * 
      */
@@ -62,155 +55,168 @@ public class Contact {
      * 
      */
     private String mail2;
+    
+    /**
+     * Default constructor
+     */
+    public Contact() {
+    }
+
+    
 
     /**
      * @return
      */
     public String getNom() {
         // TODO implement here
-        return "";
+        return this.nom;
     }
 
     /**
      * @param value
      */
     public void setNom(String value) {
-        // TODO implement here
+        this.nom = value;
     }
 
     /**
      * @return
      */
     public String getPrenom() {
-        // TODO implement here
-        return "";
+        return this.prenom;
     }
 
     /**
      * @param value
      */
     public void setPrenom(String value) {
-        // TODO implement here
+        this.prenom = value;
     }
 
     /**
      * @return
      */
     public String getRue() {
-        // TODO implement here
-        return "";
+        return this.rue;
     }
 
     /**
      * @param value
      */
     public void setRue(String value) {
-        // TODO implement here
+        this.rue = value;
     }
 
     /**
      * @return
      */
     public String getComplement() {
-        // TODO implement here
-        return "";
+        return this.complement;
     }
 
     /**
      * @param value
      */
     public void setComplement(String value) {
-        // TODO implement here
+        this.complement = value;
     }
 
     /**
      * @return
      */
     public String getCp() {
-        // TODO implement here
-        return "";
+        return this.cp;
     }
 
     /**
      * @param value
      */
     public void setCp(String value) {
-        // TODO implement here
+        this.cp = value;
     }
 
     /**
      * @return
      */
     public String getVille() {
-        // TODO implement here
-        return "";
+        return this.ville;
     }
 
     /**
      * @param value
      */
     public void setVille(String value) {
-        // TODO implement here
+        this.ville = value;
     }
 
     /**
      * @return
      */
     public String getTel1() {
-        // TODO implement here
-        return "";
+        return this.tel1;
     }
 
     /**
      * @param value
      */
     public void setTel1(String value) {
-        // TODO implement here
+        this.tel1 = value;
     }
 
     /**
      * @return
      */
     public String getTel2() {
-        // TODO implement here
-        return "";
+        return this.tel2;
     }
 
     /**
      * @param value
      */
     public void setTel2(String value) {
-        // TODO implement here
+        this.tel2 = value;
     }
 
     /**
      * @return
      */
     public String getMail1() {
-        // TODO implement here
-        return "";
+        return this.mail1;
     }
 
     /**
      * @param value
      */
     public void setMail1(String value) {
-        // TODO implement here
+        this.mail1 = value;
     }
 
     /**
      * @return
      */
     public String getMail2() {
-        // TODO implement here
-        return "";
+        return this.mail2;
     }
 
     /**
      * @param value
      */
     public void setMail2(String value) {
-        // TODO implement here
+        this.mail2 = value;
+    }
+
+    /**
+     * @return the id
+     */
+    public long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(long id) {
+        this.id = id;
     }
 
 }

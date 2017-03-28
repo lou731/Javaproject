@@ -5,6 +5,8 @@
  */
 package carnetadresses;
 
+import carnetadresses.AccessDatas.AccesData;
+import java.sql.SQLException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,6 +33,20 @@ public class CarnetAdresses extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        try
+        {
+            AccesData data = new AccesData();
+        }
+        catch(SQLException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        catch(Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        
         launch(args);
     }
     
