@@ -65,13 +65,13 @@ public class FXMLHomeController implements Initializable {
     {
         this.controller = controller;
         this.tableView.setItems(contacts);
-        this.tableView.setOnMouseClicked((MouseEvent me) -> {
-            try {
-                AddContactClicked(me);
-            } catch (IOException ex) {
-                Logger.getLogger(FXMLHomeController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
+//        this.tableView.setOnMouseClicked((MouseEvent me) -> {
+//            try {
+//                AddContactClicked(me);
+//            } catch (IOException ex) {
+//                Logger.getLogger(FXMLHomeController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        });
     }
     
     /**
