@@ -5,9 +5,13 @@
  */
 package carnetadresses.Views;
 
+import carnetadresses.Controllers.ControllerContact;
 import carnetadresses.Models.Contact;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -37,6 +41,8 @@ public class FXMLHomeController implements Initializable {
     @FXML
     private TableColumn cMail;
     
+    private ControllerContact controller;
+    
     
     /**
      * Initializes the controller class.
@@ -52,29 +58,30 @@ public class FXMLHomeController implements Initializable {
 
     /**
      * Init controller with complete list of contact before shown windows
+     * @param controller
      * @param contacts 
      */
-    public void InitBeforeShown(ObservableList<Contact> contacts)
+    public void InitBeforeShown(ControllerContact controller, ObservableList<Contact> contacts)
     {
+        this.controller = controller;
         this.tableView.setItems(contacts);
         this.tableView.setOnMouseClicked((MouseEvent me) -> {
-            AddContactClicked();
+            try {
+                AddContactClicked(me);
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLHomeController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
-    }
-    
-    private Event OnAddContact;
-    public void SetOnAddContact(ActionEvent value)
-    {
-        this.OnAddContact = value;
     }
     
     /**
      * Show new windows
-     * @param event 
+     * @param e 
+     * @throws java.io.IOException 
      */
-    @FXML protected void AddContactClicked() 
+    @FXML protected void AddContactClicked(MouseEvent e) throws IOException 
     {
-        
+        this.controller.AddContact(e);
     }
     
 }

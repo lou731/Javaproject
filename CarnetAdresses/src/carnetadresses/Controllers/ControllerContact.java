@@ -4,13 +4,21 @@ import carnetadresses.AccessDatas.IAccessData;
 import carnetadresses.AccessDatas.AccesData;
 import carnetadresses.Models.Contact;
 import carnetadresses.Views.Action;
+import carnetadresses.Views.FXMLAddModiFyContactController;
 import carnetadresses.Views.FXMLHomeController;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  * 
@@ -42,11 +50,30 @@ public class ControllerContact {
         this.controllerHomeDoc = controllerHomeDoc;
     }
     
+    /**
+     * Initialize the home controller form with data
+     */
     public void InitHomeController()
     {
         ArrayList<Contact> dataContacts = this.accessData.GetContacts();
         this.contacts = FXCollections.observableList(dataContacts);
-        this.controllerHomeDoc.InitBeforeShown(this.contacts);
+        this.controllerHomeDoc.InitBeforeShown(this, this.contacts);
+    }
+    
+    /**
+     * Add new contact show the new windows 
+     * @param event
+     * @throws IOException 
+     */
+    public void AddContact(Event event) throws IOException
+    {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(FXMLAddModiFyContactController.class.getResource("FXMLAddModiFyContact.fxml"));
+        stage.setScene(new Scene(root));
+        stage.setTitle("My modal window");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(((Node)event.getSource()).getScene().getWindow() );
+        stage.showAndWait();
     }
     
     /**
