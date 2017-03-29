@@ -24,8 +24,8 @@
          </columnResizePolicy>
       </TableView>
       <Button fx:id="buttonAdd" layoutX="890.0" layoutY="64.0" mnemonicParsing="false" onMouseClicked="#AddContactClicked" text="Ajouter un nouveau contact" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="64.0" />
-      <Button layoutX="897.0" layoutY="786.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="164.0" text="Fermer" AnchorPane.bottomAnchor="28.0" AnchorPane.rightAnchor="28.0" />
-      <Button fx:id="buttonAdd1" layoutX="890.0" layoutY="102.0" mnemonicParsing="false" onMouseClicked="" prefHeight="25.0" prefWidth="164.0" text="Modifier un contact" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="102.0" />
-      <Button fx:id="buttonAdd2" layoutX="890.0" layoutY="141.0" mnemonicParsing="false" onMouseClicked="" prefHeight="25.0" prefWidth="164.0" text="Supprimer un contact" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="141.0" />
+      <Button fx:id="buttonClose" layoutX="897.0" layoutY="786.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="164.0" text="Fermer" AnchorPane.bottomAnchor="28.0" AnchorPane.rightAnchor="28.0" />
+      <Button fx:id="bottonModify" layoutX="890.0" layoutY="102.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="164.0" text="Modifier un contact" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="102.0" />
+      <Button fx:id="buttonSuppress" layoutX="890.0" layoutY="141.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="164.0" text="Supprimer un contact" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="141.0" />
    </children>
 </AnchorPane>
