@@ -9,6 +9,7 @@ import carnetadresses.Models.Contact;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +22,8 @@ import static org.junit.Assert.*;
 public class AccesDataTest {
     
     private Connection connection;
-    private AccesData instance = new AccesData(this.connection);
+    private AccesData instance;
+   
     
     public AccesDataTest() {
     }
@@ -121,41 +123,46 @@ public class AccesDataTest {
 //    /**
 //     * Test of GetContacts method, of class AccesData.
 //     */
-   /*@Test
-    public void testGetContacts() {
+   @Test
+    public void testGetContacts(){
         System.out.println("GetContacts");
-        List<Contact> ret = null;
-//
-        ret = instance.GetContacts();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }*/
+        ArrayList<Contact> ret = null;
+        ret =  instance.GetContacts();
+        assertEquals(7, ret.size());
+
+    }
 //
 //    /**
 //     * Test of SupressContact method, of class AccesData.
 //     */
-   /* @Test
+   @Test
    public void testSupressContact() {
         System.out.println("SupressContact");
-        int id = 0;
-        this.instance = new AccesData(this.connection);
-        instance.SupressContact(id);
-       // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }*/
+        ArrayList<Contact> ret = null;
+        boolean suppr = instance.SupressContact(8);
+        ret = instance.GetContacts();
+        assertEquals(7, ret.size());
+        assertTrue(suppr);
+        boolean suppr2 = instance.SupressContact(8);
+        assertFalse(suppr2);
+    }
 //
 //    /**
 //     * Test of ModifyContact method, of class AccesData.
 //     */
-//    @Test
-//    public void testModifyContact() {
-//        System.out.println("ModifyContact");
-//        Contact contact = null;
-//        this.instance = new AccesData(this.connection);
-//        instance.ModifyContact(contact);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @Test
+    public void testModifyContact() {
+        System.out.println("ModifyContact");
+        Contact contact = null;// initialisation de la variable contact à null
+        Contact ret = null; // initialisation de la variable ret à null
+        //this.instance = new AccesData(this.connection);
+        boolean res = instance.ModifyContact(contact);
+        assertTrue(instance.ModifyContact(ret));
+        ret = instance.GetContact(8);
+        assertEquals("aaaaaa", ret.getNom());
+        // TODO review the generated test code and remove the default call to fail.
+       // fail("The test case is a prototype.");
+    }
 
     /**
      * Test of AddContact method, of class AccesData.
@@ -176,8 +183,8 @@ public class AccesDataTest {
         assertEquals("Toto", ret.getNom());
         assertEquals("Titi", ret.getPrenom());
         assertEquals("31500", ret.getCp());
-        
-        ArrayList<Contact> contacts = instance.GetContacts();
+
+        /*ArrayList<Contact> contacts = instance.GetContacts();
         assertEquals(8, contacts.size());
         
         contacts = instance.GetContacts("Tot");
@@ -193,6 +200,6 @@ public class AccesDataTest {
         
         instance.SupressContact(8);
         contacts = instance.GetContacts();
-        assertEquals(7, contacts.size());
+        assertEquals(7, contacts.size());*/
     }
 }
