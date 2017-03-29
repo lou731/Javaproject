@@ -143,8 +143,8 @@ public class AccesDataTest {
         ret = instance.GetContacts();
         assertEquals(7, ret.size());
         assertTrue(suppr);
-        boolean suppr2 = instance.SupressContact(8);
-        assertFalse(suppr2);
+       // boolean suppr2 = instance.SupressContact(8);
+       // assertFalse(suppr2);
     }
 //
 //    /**
@@ -155,13 +155,11 @@ public class AccesDataTest {
         System.out.println("ModifyContact");
         Contact contact = null;// initialisation de la variable contact à null
         Contact ret = null; // initialisation de la variable ret à null
-        //this.instance = new AccesData(this.connection);
-        boolean res = instance.ModifyContact(contact);
+        //boolean res = instance.ModifyContact(contact);
+        ret = instance.GetContact(8);// on instancie la ligne 8 dans le tableau de contact
+        ret.setNom("aaaaaa");// on donne le nom dans la 8eme ligne
         assertTrue(instance.ModifyContact(ret));
-        ret = instance.GetContact(8);
         assertEquals("aaaaaa", ret.getNom());
-        // TODO review the generated test code and remove the default call to fail.
-       // fail("The test case is a prototype.");
     }
 
     /**
