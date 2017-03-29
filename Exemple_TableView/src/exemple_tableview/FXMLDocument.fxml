@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.TableView?>
+
+<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" fx:controller="exemple_tableview.FXMLDocumentController">
+    <children>
+        <Button layoutX="126" layoutY="90" text="Click Me!" onAction="#handleButtonAction" fx:id="button" />
+        <Label layoutX="126" layoutY="120" minHeight="16" minWidth="69" fx:id="label" />
+        <ChoiceBox fx:id="duration" layoutX="10" layoutY="20" prefHeight="26.0" prefWidth="150.0">
+          <items>
+              <FXCollections fx:factory="observableArrayList">
+                 <Integer fx:value="3" />
+                 <Integer fx:value="4" />
+                 <Integer fx:value="5" />
+                 <Integer fx:value="6" />
+                 <Integer fx:value="7" />
+                 <Integer fx:value="8" />
+                 <Integer fx:value="9" />
+                 <Integer fx:value="10" />
+                 <Integer fx:value="11" />
+                 <Integer fx:value="12" />
+              </FXCollections>
+           </items>
+        </ChoiceBox>
+    </children>
+</AnchorPane>

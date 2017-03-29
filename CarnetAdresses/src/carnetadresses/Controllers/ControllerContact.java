@@ -4,43 +4,57 @@ import carnetadresses.AccessDatas.IAccessData;
 import carnetadresses.AccessDatas.AccesData;
 import carnetadresses.Models.Contact;
 import carnetadresses.Views.Action;
-import carnetadresses.Views.HomeForm;
+import carnetadresses.Views.FXMLHomeController;
 import java.sql.SQLException;
 import java.util.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 
 /**
  * 
  */
 public class ControllerContact {
-
+    
+    /**
+     * Home controller windows
+     */
+    private FXMLHomeController controllerHomeDoc;
+    
+    /**
+     * Access data layer
+     */
     private IAccessData accessData;
     
     /**
-     * 
+     * Observable list used to display contacts
      */
-    private HomeForm mainForm;
+    private ObservableList<Contact> contacts;
     
     /**
-     * Default constructor
+     * Default constructor use for application
+     * @param controllerHomeDoc
      * @throws java.sql.SQLException
      */
-    public ControllerContact() throws SQLException {
+    public ControllerContact(FXMLHomeController controllerHomeDoc) throws SQLException {
         this(new AccesData());
+        this.controllerHomeDoc = controllerHomeDoc;
+    }
+    
+    public void InitHomeController()
+    {
+        ArrayList<Contact> dataContacts = this.accessData.GetContacts();
+        this.contacts = FXCollections.observableList(dataContacts);
+        this.controllerHomeDoc.InitBeforeShown(this.contacts);
     }
     
     /**
-     * Default constructor
+     * Constructor used for testing
      * @param accessData
      */
     public ControllerContact(IAccessData accessData) {
         this.accessData = accessData;
-    }
-
-    /**
-     * 
-     */
-    public void CreateHomeForm() {
-        // TODO implement here
     }
 
     /**
