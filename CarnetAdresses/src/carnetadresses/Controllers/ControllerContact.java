@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.util.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -70,7 +69,7 @@ public class ControllerContact {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(FXMLAddModiFyContactController.class.getResource("FXMLAddModiFyContact.fxml"));
         stage.setScene(new Scene(root));
-        stage.setTitle("My modal window");
+        stage.setTitle("Ajout d'un nouveau contact");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)event.getSource()).getScene().getWindow() );
         stage.showAndWait();
