@@ -3,10 +3,10 @@
 #------------------------------------------------------------
 
 #------------------------------------------------------------
-# Table: Client
+# Table: Contacts
 #------------------------------------------------------------
 
-CREATE TABLE Contact(
+CREATE TABLE Contacts(
         Id         int (11) Auto_increment  NOT NULL ,
         Nom        Varchar (100) NOT NULL ,
         Prenom     Varchar (100) ,
