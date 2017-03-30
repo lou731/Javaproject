@@ -72,6 +72,9 @@ public class FXMLHomeController implements Initializable {
         this.cTel.setCellValueFactory(new PropertyValueFactory<>("tel1"));
         this.cMail.setCellValueFactory(new PropertyValueFactory<>("mail1"));
         
+        this.tableView.setOnMousePressed((MouseEvent me) -> {
+            TableViewClicked(me);
+        });
         this.tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         this.tableView.getSelectionModel().getSelectedItems().addListener((ListChangeListener.Change c) -> {
             SelectionTablechanged(c);
@@ -121,6 +124,18 @@ public class FXMLHomeController implements Initializable {
     }
     
     /**
+     * Edit contact by double click
+     * @param e 
+     */
+    protected void TableViewClicked(MouseEvent e) 
+    {
+        if(e.isPrimaryButtonDown() && e.getClickCount() == 2)
+        {
+            this.DetailContactClicked(e);
+        }
+    }
+    
+    /**
      * Add new contact button click
      * @param e 
      * @throws java.io.IOException 
@@ -142,7 +157,7 @@ public class FXMLHomeController implements Initializable {
      * @param e 
      * @throws java.io.IOException 
      */
-    @FXML protected void ModifyClicked(MouseEvent e) throws IOException, Exception 
+    @FXML protected void ModifyClicked(MouseEvent e)
     {
         try 
         {
