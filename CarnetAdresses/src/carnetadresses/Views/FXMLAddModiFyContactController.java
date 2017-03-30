@@ -99,7 +99,9 @@ public class FXMLAddModiFyContactController implements Initializable {
     public void InitBeforeShown(ControllerContact controller, Action action, Contact contact)
     {
         this.controller = controller;
+        
         this.setAction(action);
+        
         switch(action)
         {
             case Add:
