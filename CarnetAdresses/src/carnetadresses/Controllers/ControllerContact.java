@@ -105,11 +105,22 @@ public class ControllerContact {
     }
 
     /**
-     * @param ids
+     * @param contact
+     * @throws java.lang.Exception
      */
-    public void SuppressContact(Contact contact) 
+    public void SuppressContact(Contact contact) throws Exception 
     {
-        //UtilsView.ShowAlert(, message, title);
+        if(contact != null)
+        {
+            if(!this.accessData.SupressContact(contact.getId()))
+            {
+                throw new Exception("Erreur lors de la suppression du contact");
+            }
+            else
+            {
+                this.contacts.remove(contact);
+            }
+        }
     }
 
     /**
@@ -119,14 +130,18 @@ public class ControllerContact {
      */
     public Contact AddContact(Contact contact) throws Exception 
     {
-        Contact contactAdded = this.accessData.AddContact(contact);
-        if(null != contactAdded)
+        Contact contactAdded = null;
+        if(contact != null)
         {
-            this.contacts.add(contactAdded);
-        }
-        else
-        {
-            throw new Exception("Error occurs while saving contact.");
+            contactAdded = this.accessData.AddContact(contact);
+            if(null != contactAdded)
+            {
+                this.contacts.add(contactAdded);
+            }
+            else
+            {
+                throw new Exception("Error occurs while saving contact.");
+            }
         }
         
         return contactAdded;
@@ -139,15 +154,18 @@ public class ControllerContact {
      */
     public void ModifyContact(Contact contact) throws Exception 
     {
-        boolean correct = this.accessData.ModifyContact(contact);
-        if(!correct)
+        if(contact != null)
         {
-            throw new Exception("Error occurs while saving contact.");
-        }
-        else
-        {
-            int index = this.contacts.indexOf(contact);
-            this.contacts.set(index, (Contact)contact.clone());
+            boolean correct = this.accessData.ModifyContact(contact);
+            if(!correct)
+            {
+                throw new Exception("Error occurs while saving contact.");
+            }
+            else
+            {
+                int index = this.contacts.indexOf(contact);
+                this.contacts.set(index, (Contact)contact.clone());
+            }
         }
     }
         

@@ -9,7 +9,10 @@ import carnetadresses.Controllers.ControllerContact;
 import carnetadresses.Models.Contact;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -167,15 +170,27 @@ public class FXMLHomeController implements Initializable {
         {
             if (this.tableView.getSelectionModel().getSelectedItems().size() >= 1) 
             {
-                ObservableList<Contact> selectedItems = this.tableView.getSelectionModel().getSelectedItems();
-                selectedItems.forEach((item) -> {
-                    this.controller.SuppressContact(item);
-                });
+                if(UtilsView.ShowConfirmation("Voulez-vous vraiment supprimer les contacts sélectionnés", "Suppression de contacts"))
+                {
+                    ArrayList<Contact> selectedItems = new ArrayList<>(this.tableView.getSelectionModel().getSelectedItems());
+                    for(Contact item : selectedItems)
+                    {
+                        try 
+                        {
+                            this.controller.SuppressContact(item);
+                        }
+                        catch (Exception ex) 
+                        {
+                            UtilsView.ShowAlert(Alert.AlertType.ERROR, ex.getMessage(), "Erreur lors de la suppression");
+                            Logger.getLogger(FXMLHomeController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    };
+                }
             }
         } 
         catch (Exception exception) 
         {
-            UtilsView.ShowAlert(Alert.AlertType.ERROR, exception.getMessage(), "Erreur sur modification");
+            UtilsView.ShowAlert(Alert.AlertType.ERROR, exception.getMessage(), "Erreur lors de la suppression");
         }
     }
         

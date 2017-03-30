@@ -28,6 +28,6 @@
       <Button fx:id="buttonSuppress" disable="true" layoutX="890.0" layoutY="141.0" mnemonicParsing="false" onMouseClicked="#SuppressClicked" prefHeight="25.0" prefWidth="164.0" text="Supprimer un contact" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="141.0" />
       <TextField fx:id="textSearch" layoutX="32.0" layoutY="786.0" prefHeight="25.0" prefWidth="805.0" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="252.0" />
       <Button fx:id="buttonClose" layoutX="890.0" layoutY="786.0" mnemonicParsing="false" onMouseClicked="#CloseApplication" prefHeight="25.0" prefWidth="164.0" text="Fermer" AnchorPane.bottomAnchor="28.0" AnchorPane.rightAnchor="35.0" />
-      <Button fx:id="buttonDetail" layoutX="890.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#DetailContactClicked" prefHeight="25.0" prefWidth="164.0" text="Détail" />
+      <Button fx:id="buttonDetail" disable="true" layoutX="890.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#DetailContactClicked" prefHeight="25.0" prefWidth="164.0" text="Détail" />
    </children>
 </AnchorPane>
