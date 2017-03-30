@@ -52,8 +52,6 @@ public class FXMLAddModiFyContactController implements Initializable {
     private TextField tf_emailPerso;
     @FXML
     private Button buttonOk;
-    @FXML
-    private Button buttonCancel;
     
     private Contact contact;
     private Action action;
@@ -70,26 +68,6 @@ public class FXMLAddModiFyContactController implements Initializable {
         //this.buttonCancel.set
     }
     
-    public Contact getContact()
-    {
-        return this.contact;
-    }
-    
-    
-    /**
-     * @return the action
-     */
-    public Action getAction() {
-        return action;
-    }
-
-    /**
-     * @param action the action to set
-     */
-    public void setAction(Action action) {
-        this.action = action;
-    }
-    
     /**
      * Init form before show it.
      * @param controller
@@ -100,7 +78,7 @@ public class FXMLAddModiFyContactController implements Initializable {
     {
         this.controller = controller;
         
-        this.setAction(action);
+        this.action = action;
         
         switch(action)
         {
@@ -178,18 +156,7 @@ public class FXMLAddModiFyContactController implements Initializable {
      */
     @FXML protected void OkClicked(MouseEvent e)
     {
-        boolean correct = true;
-        if(this.tf_nom.textProperty().get().isEmpty())
-        {
-            this.tf_nom.setStyle("-fx-background-color:lightpink");
-            correct = false;
-        }
-        else
-        {
-            this.tf_nom.setStyle(null);
-        }
-        
-        if(correct  && VerifDatas.VerifDataContact(this.contact))
+        if(this.VerifData())
         {
             this.FillContact();
             
@@ -222,6 +189,116 @@ public class FXMLAddModiFyContactController implements Initializable {
             }
         }
     } 
+    
+    /**
+     * Verify data before saving.
+     * @return 
+     */
+    private boolean VerifData()
+    {
+        boolean correct = true;
+        if(this.tf_nom.textProperty().get().isEmpty() || !VerifDatas.controlStr(this.tf_nom.textProperty().get(), 30))
+        {
+            this.tf_nom.setStyle("-fx-background-color:lightpink");
+            correct = false;
+        }
+        else
+        {
+            this.tf_nom.setStyle(null);
+        }
+        
+        if(!VerifDatas.controlStr(this.tf_prenom.textProperty().get(), 30))
+        {
+            this.tf_prenom.setStyle("-fx-background-color:lightpink");
+            correct = false;
+        }
+        else
+        {
+            this.tf_prenom.setStyle(null);
+        }
+        
+        if(!VerifDatas.controlStr(this.tf_adresse.textProperty().get(), 50))
+        {
+            this.tf_adresse.setStyle("-fx-background-color:lightpink");
+            correct = false;
+        }
+        else
+        {
+            this.tf_adresse.setStyle(null);
+        }
+        
+        if(!VerifDatas.controlStr(this.tf_complement.textProperty().get(), 50))
+        {
+            this.tf_complement.setStyle("-fx-background-color:lightpink");
+            correct = false;
+        }
+        else
+        {
+            this.tf_complement.setStyle(null);
+        }
+        
+        if(!VerifDatas.controlStr(this.tf_ville.textProperty().get(), 50))
+        {
+            this.tf_ville.setStyle("-fx-background-color:lightpink");
+            correct = false;
+        }
+        else
+        {
+            this.tf_ville.setStyle(null);
+        }
+        
+        if(!VerifDatas.VerifyCP(this.tf_codePostal.textProperty().get()))
+        {
+            this.tf_codePostal.setStyle("-fx-background-color:lightpink");
+            correct = false;
+        }
+        else
+        {
+            this.tf_codePostal.setStyle(null);
+        }
+        
+        if(!VerifDatas.VeriofyEmail(this.tf_emailPerso.textProperty().get()))
+        {
+            this.tf_emailPerso.setStyle("-fx-background-color:lightpink");
+            correct = false;
+        }
+        else
+        {
+            this.tf_emailPerso.setStyle(null);
+        }
+        
+        if(!VerifDatas.VeriofyEmail(this.tf_emailPro.textProperty().get()))
+        {
+            this.tf_emailPro.setStyle("-fx-background-color:lightpink");
+            correct = false;
+        }
+        else
+        {
+            this.tf_emailPro.setStyle(null);
+        }
+        
+        if(!VerifDatas.VerifyTel(this.tf_telPerso.textProperty().get()))
+        {
+            this.tf_telPerso.setStyle("-fx-background-color:lightpink");
+            correct = false;
+        }
+        else
+        {
+            this.tf_telPerso.setStyle(null);
+        }
+        
+        if(!VerifDatas.VerifyTel(this.tf_telPro.textProperty().get()))
+        {
+            this.tf_telPro.setStyle("-fx-background-color:lightpink");
+            correct = false;
+        }
+        else
+        {
+            this.tf_telPro.setStyle(null);
+        }
+        
+        return correct;
+    }
     
     /**
      * Cancel changes
