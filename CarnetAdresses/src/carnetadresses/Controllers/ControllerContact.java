@@ -84,6 +84,16 @@ public class ControllerContact {
         this.CreateDetailContactView(Action.Add, new Contact(), "Ajout d'un nouveau contact");        
     }
     
+     /**
+     * Show detail contact 
+     * @param contact
+     * @throws IOException 
+     */
+    public void DetailContactForm(Contact contact) throws IOException
+    {
+        this.CreateDetailContactView(Action.Display, contact, "Détail du contact : " + contact.getNom());        
+    }
+    
     /**
      * Modify existing contact.
      * @param contact

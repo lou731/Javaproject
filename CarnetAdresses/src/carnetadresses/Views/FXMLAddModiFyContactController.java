@@ -113,7 +113,6 @@ public class FXMLAddModiFyContactController implements Initializable {
                 this.FillFieldTexts();
                 break;
             default:
-                return;
         }
     }
     
