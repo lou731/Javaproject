@@ -24,6 +24,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -177,6 +178,25 @@ public class FXMLHomeController implements Initializable {
             UtilsView.ShowAlert(Alert.AlertType.ERROR, exception.getMessage(), "Erreur sur modification");
         }
     }
+        
+    /**
+     * Close application
+     * @param e 
+     */
+    @FXML protected void DetailContactClicked(MouseEvent e)
+    {
+       try 
+        {
+            if (this.tableView.getSelectionModel().getSelectedItems().size() == 1) 
+            {
+                this.controller.DetailContactForm((Contact) this.tableView.getSelectionModel().getSelectedItem());
+            }
+        } 
+        catch (Exception exception) 
+        {
+            UtilsView.ShowAlert(Alert.AlertType.ERROR, exception.getMessage(), "Erreur sur modification");
+        }
+    }
     
     /**
      * Select contact in grid 
@@ -188,5 +208,15 @@ public class FXMLHomeController implements Initializable {
         this.buttonSuppress.setDisable(count == 0);
         this.bottonModify.setDisable(count != 1);
         this.buttonDetail.setDisable(count != 1);
+    }
+        
+    /**
+     * Close application
+     * @param e 
+     */
+    @FXML protected void CloseApplication(MouseEvent e)
+    {
+        Stage stage = (Stage) this.buttonClose.getScene().getWindow();
+        stage.close();
     }
 }
