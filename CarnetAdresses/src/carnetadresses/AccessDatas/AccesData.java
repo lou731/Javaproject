@@ -174,7 +174,6 @@ public class AccesData implements IAccessData
                 this.preparedStatment = (PreparedStatement)connection.prepareStatement(sql);
                 this.preparedStatment.setLong(1, id);
                 this.preparedStatment.executeUpdate();
-                
                 System.out.println("Delete with = '" + id + "', sucessfully");
                 return true;
             } 

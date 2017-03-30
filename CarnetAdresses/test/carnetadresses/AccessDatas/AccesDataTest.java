@@ -9,7 +9,6 @@ import carnetadresses.Models.Contact;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -106,10 +105,10 @@ public class AccesDataTest {
         
         //Create contact 8
         contact = new Contact();
-        contact.setNom(null);
-        contact.setPrenom(null);
-        contact.setCp(null);
-        contact.setVille(null);
+        contact.setNom("Marie");
+        contact.setPrenom("toto");
+        contact.setCp("31500");
+        contact.setVille("ssss");
         
         this.instance.AddContact(contact);
         //Ce contact n'a pas été pris en compte ( ce contact n'existe pas )
@@ -120,45 +119,57 @@ public class AccesDataTest {
         this.connection = null;
     }
 
-//    /**
-//     * Test of GetContacts method, of class AccesData.
-//     */
+   /**
+    * Test of GetContacts method, of class AccesData.
+    */
    @Test
     public void testGetContacts(){
         System.out.println("GetContacts");
-        ArrayList<Contact> ret = null;
-        ret =  instance.GetContacts();
-        assertEquals(7, ret.size());
-
+        ArrayList<Contact> ret =  instance.GetContacts();
+        assertEquals(8, ret.size());
     }
-//
-//    /**
-//     * Test of SupressContact method, of class AccesData.
-//     */
+    
+       /**
+    * Test of GetContact method, of class AccesData.
+    */
+   @Test
+    public void testGetContact(){
+        System.out.println("GetContacts");
+        Contact ret =  instance.GetContact(8);
+        assertNotNull(ret);
+        assertEquals("Marie", ret.getNom());
+    }
+
+    /**
+     * Test of SupressContact method, of class AccesData.
+     */
    @Test
    public void testSupressContact() {
         System.out.println("SupressContact");
         ArrayList<Contact> ret = null;
+        
+        // suppress contact with id=8
         boolean suppr = instance.SupressContact(8);
         ret = instance.GetContacts();
         assertEquals(7, ret.size());
         assertTrue(suppr);
-       // boolean suppr2 = instance.SupressContact(8);
-       // assertFalse(suppr2);
+        assertNull(this.instance.GetContact(8));
+        
+        // Suppress inexisting contact
+        instance.SupressContact(101); 
+        assertEquals(7, this.instance.GetContacts().size());
     }
-//
-//    /**
-//     * Test of ModifyContact method, of class AccesData.
-//     */
+   
+    /**
+     * Test of ModifyContact method, of class AccesData.
+     */
     @Test
     public void testModifyContact() {
-        System.out.println("ModifyContact");
-        Contact contact = null;// initialisation de la variable contact à null
-        Contact ret = null; // initialisation de la variable ret à null
-        //boolean res = instance.ModifyContact(contact);
-        ret = instance.GetContact(8);// on instancie la ligne 8 dans le tableau de contact
+        System.out.println("ModifyContact");        
+        Contact ret = instance.GetContact(8);
         ret.setNom("aaaaaa");// on donne le nom dans la 8eme ligne
         assertTrue(instance.ModifyContact(ret));
+        ret = this.instance.GetContact(8);
         assertEquals("aaaaaa", ret.getNom());
     }
 
@@ -170,34 +181,16 @@ public class AccesDataTest {
         System.out.println("AddContact");
         Contact contact = new Contact();
         Contact ret = null;
-       // AccesData instance = new AccesData(this.connection);
         contact.setNom("Toto");
         contact.setPrenom("Titi");
         contact.setCp("31500");
         ret = instance.AddContact(contact);
         // TODO review the generated test code and remove the default call to fail.
         
-        assertEquals(8, ret.getId());
+        assertEquals(9, ret.getId());
         assertEquals("Toto", ret.getNom());
         assertEquals("Titi", ret.getPrenom());
         assertEquals("31500", ret.getCp());
-
-        /*ArrayList<Contact> contacts = instance.GetContacts();
-        assertEquals(8, contacts.size());
-        
-        contacts = instance.GetContacts("Tot");
-        assertEquals(2, contacts.size());
-        
-        contacts = instance.GetContacts("it");
-        assertEquals(2, contacts.size());
-        
-        ret.setNom("aaaaaa");
-        assertTrue(instance.ModifyContact(ret));
-        ret = instance.GetContact(8);
-        assertEquals("aaaaaa", ret.getNom());
-        
-        instance.SupressContact(8);
-        contacts = instance.GetContacts();
-        assertEquals(7, contacts.size());*/
+        assertEquals(9, this.instance.GetContacts().size());
     }
 }
