@@ -164,7 +164,8 @@ public class FXMLHomeController implements Initializable {
      * @param e 
      * @throws java.io.IOException 
      */
-    @FXML protected void SuppressClicked(MouseEvent e) throws IOException 
+    @FXML@SuppressWarnings("empty-statement") 
+    protected void SuppressClicked(MouseEvent e) throws IOException 
     {
         try 
         {
@@ -173,8 +174,7 @@ public class FXMLHomeController implements Initializable {
                 if(UtilsView.ShowConfirmation("Voulez-vous vraiment supprimer les contacts sélectionnés", "Suppression de contacts"))
                 {
                     ArrayList<Contact> selectedItems = new ArrayList<>(this.tableView.getSelectionModel().getSelectedItems());
-                    for(Contact item : selectedItems)
-                    {
+                    selectedItems.forEach((item) -> {
                         try 
                         {
                             this.controller.SuppressContact(item);
@@ -184,7 +184,7 @@ public class FXMLHomeController implements Initializable {
                             UtilsView.ShowAlert(Alert.AlertType.ERROR, ex.getMessage(), "Erreur lors de la suppression");
                             Logger.getLogger(FXMLHomeController.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                    };
+                    });
                 }
             }
         } 
@@ -207,7 +207,7 @@ public class FXMLHomeController implements Initializable {
                 this.controller.DetailContactForm((Contact) this.tableView.getSelectionModel().getSelectedItem());
             }
         } 
-        catch (Exception exception) 
+        catch (IOException exception) 
         {
             UtilsView.ShowAlert(Alert.AlertType.ERROR, exception.getMessage(), "Erreur sur modification");
         }
@@ -219,7 +219,7 @@ public class FXMLHomeController implements Initializable {
      */
     @FXML protected void SelectionTablechanged(ListChangeListener.Change c)
     {
-        int count = c.getList().size();
+        int count = this.tableView.getSelectionModel().getSelectedItems().size();
         this.buttonSuppress.setDisable(count == 0);
         this.bottonModify.setDisable(count != 1);
         this.buttonDetail.setDisable(count != 1);
