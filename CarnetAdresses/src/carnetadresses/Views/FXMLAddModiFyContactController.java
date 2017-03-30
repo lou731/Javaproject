@@ -105,7 +105,7 @@ public class FXMLAddModiFyContactController implements Initializable {
                 break;
             case Display:
                 this.contact = contact;
-                this.DisableTextField(true);
+                this.EnableTextField(false);
                 this.FillFieldTexts();
                 break;
             case Modify:
@@ -152,20 +152,20 @@ public class FXMLAddModiFyContactController implements Initializable {
     
     /**
      * dissable text fields => for display contact
-     * @param disable 
+     * @param enable 
      */
-    private void DisableTextField(boolean disable)
+    private void EnableTextField(boolean enable)
     {
-        this.tf_adresse.setEditable(disable);
-        this.tf_codePostal.setEditable(disable);
-        this.tf_complement.setEditable(disable);
-        this.tf_emailPerso.setEditable(disable);
-        this.tf_emailPro.setEditable(disable);
-        this.tf_nom.setEditable(disable);
-        this.tf_prenom.setEditable(disable);
-        this.tf_telPerso.setEditable(disable);
-        this.tf_telPro.setEditable(disable);
-        this.tf_ville.setEditable(disable);
+        this.tf_adresse.setEditable(enable);
+        this.tf_codePostal.setEditable(enable);
+        this.tf_complement.setEditable(enable);
+        this.tf_emailPerso.setEditable(enable);
+        this.tf_emailPro.setEditable(enable);
+        this.tf_nom.setEditable(enable);
+        this.tf_prenom.setEditable(enable);
+        this.tf_telPerso.setEditable(enable);
+        this.tf_telPro.setEditable(enable);
+        this.tf_ville.setEditable(enable);
     }
 
     /**
