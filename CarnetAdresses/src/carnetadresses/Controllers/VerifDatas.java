@@ -11,7 +11,7 @@ public class VerifDatas {
     
     public static boolean controlStr(String chaine, int Longueur)
     {
-         if(chaine.length()<Longueur+1)
+         if(chaine == null || chaine.length() < Longueur+1)
         {
             return true;
         }
@@ -26,9 +26,9 @@ public class VerifDatas {
      */
     public static boolean VerifyTel(String tel) 
     {
-        if(!tel.isEmpty())
+        if(tel != null && !tel.isEmpty())
         {
-            Pattern pat=Pattern.compile("^(0|+33)[1-9]([-. ]?(0-9){2}){4}$");
+            Pattern pat=Pattern.compile("^(0|\\+33)[1-9]([-. ]?(0-9){2}){4}$");
             Matcher regok=pat.matcher(tel);
             if(regok.find())
             {
@@ -48,7 +48,7 @@ public class VerifDatas {
      */
     public static boolean VerifyCP(String cp) 
     {
-        if(!cp.isEmpty())
+        if(cp != null && !cp.isEmpty())
         {
             Pattern pat=Pattern.compile("^[0-9]{5}$");
             Matcher regok=pat.matcher(cp);
@@ -67,7 +67,7 @@ public class VerifDatas {
     
     public static boolean VeriofyEmail(String email)
     {
-        if(!email.isEmpty())
+        if(email != null && !email.isEmpty())
         {
             Pattern pat=Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
             Matcher regok=pat.matcher(email);

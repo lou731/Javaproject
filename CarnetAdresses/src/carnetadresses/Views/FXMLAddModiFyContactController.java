@@ -159,37 +159,50 @@ public class FXMLAddModiFyContactController implements Initializable {
      */
     @FXML protected void OkClicked(MouseEvent e)
     {
-        if(this.VerifData())
+        try
         {
-            this.FillContact();
-            
-            try
+            switch(this.action)
             {
-                switch(this.action)
+                case Add:
                 {
-                    case Add:
+                    if(this.VerifData())
                     {
+                        this.FillContact();
                         this.controller.AddContact(this.contact);
-                        break;
                     }
-                    case Modify:
+                    else
                     {
-                        this.controller.ModifyContact(this.contact);
-                        break;
+                        return;
                     }
-                    case Display:
-                    {
-                        break;
-                    }
+                    
+                    break;
                 }
-            
-                Stage stage = (Stage) this.buttonOk.getScene().getWindow();
-                stage.close();
-            } 
-            catch (Exception ex)
-            {
-                UtilsView.ShowAlert(AlertType.ERROR, ex.getMessage(), "Erreur sur ajout");
+                case Modify:
+                {
+                    if(this.VerifData())
+                    {
+                        this.FillContact();
+                        this.controller.ModifyContact(this.contact);
+                    }
+                    else
+                    {
+                        return;
+                    }
+                    
+                    break;
+                }
+                case Display:
+                {
+                    break;
+                }
             }
+
+            Stage stage = (Stage) this.buttonOk.getScene().getWindow();
+            stage.close();
+        } 
+        catch (Exception ex)
+        {
+            UtilsView.ShowAlert(AlertType.ERROR, ex.getMessage(), "Erreur sur ajout");
         }
     } 
     
