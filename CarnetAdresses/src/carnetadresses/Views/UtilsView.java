@@ -5,7 +5,9 @@
  */
 package carnetadresses.Views;
 
+import java.util.Optional;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 
 /**
@@ -30,26 +32,22 @@ public class UtilsView
         //alert.setHeaderText("Look, an Information Dialog");
         alert.setContentText(message);
         alert.showAndWait();
-//        alert.showAndWait();.ifPresent(rs -> {
-//            if (rs == ButtonType.OK) {
-//                System.out.println("Pressed OK.");
-//            }
-//        });
     }
 
+    /**
+     * Show confirmation alert
+     * @param message
+     * @param title
+     * @return 
+     */
     public static boolean ShowConfirmation(String message, String title)
     {
-//        boolean ret = false;
-//        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//        alert.setTitle(title);
-//        //alert.setHeaderText("Look, an Information Dialog");
-//        alert.setContentText(message);
-//        alert.showAndWait().ifPresent((ButtonType rs) -> {
-//            if (rs == ButtonType.OK) {
-//                ret = true;
-//            }
-//        });
-        
-        return false;
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setContentText(message);
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        return (result.isPresent()) && (result.get() == ButtonType.OK);
     }    
 }
