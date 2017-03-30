@@ -5,10 +5,13 @@
  */
 package carnetadresses.Views;
 
+import carnetadresses.CarnetAdresses;
 import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
 /**
  *
@@ -40,12 +43,19 @@ public class UtilsView
      * @param title
      * @return 
      */
-    public static boolean ShowConfirmation(String message, String title)
+    public static boolean ShowConfirmation(String message, String title, String imagePath)
     {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle(title);
         alert.setContentText(message);
 
+        if(!imagePath.isEmpty())
+        {
+            Image img = new Image(CarnetAdresses.class.getResourceAsStream(imagePath));
+            Stage stage = (Stage)alert.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(img);
+        }
+        
         Optional<ButtonType> result = alert.showAndWait();
 
         return (result.isPresent()) && (result.get() == ButtonType.OK);

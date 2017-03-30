@@ -2,6 +2,7 @@ package carnetadresses.Controllers;
 
 import carnetadresses.AccessDatas.IAccessData;
 import carnetadresses.AccessDatas.AccesData;
+import carnetadresses.CarnetAdresses;
 import carnetadresses.Models.Contact;
 import carnetadresses.Views.Action;
 import carnetadresses.Views.FXMLAddModiFyContactController;
@@ -18,6 +19,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -81,7 +83,7 @@ public class ControllerContact {
      */
     public void AddContactForm() throws IOException
     {
-        this.CreateDetailContactView(Action.Add, new Contact(), "Ajout d'un nouveau contact");        
+        this.CreateDetailContactView(Action.Add, new Contact(), "Ajout d'un nouveau contact", "Images/add.jpg");        
     }
     
      /**
@@ -91,7 +93,7 @@ public class ControllerContact {
      */
     public void DetailContactForm(Contact contact) throws IOException
     {
-        this.CreateDetailContactView(Action.Display, contact, "Détail du contact : " + contact.getNom());        
+        this.CreateDetailContactView(Action.Display, contact, "Détail du contact : " + contact.getNom(), "Images/detail.jpg");        
     }
     
     /**
@@ -101,7 +103,7 @@ public class ControllerContact {
      */
     public void ModifyContactForm(Contact contact) throws Exception 
     {
-        this.CreateDetailContactView(Action.Modify, contact, "Modification du contact : " + contact.getNom());        
+        this.CreateDetailContactView(Action.Modify, contact, "Modification du contact : " + contact.getNom(), "Images/modify.jpg");        
     }
 
     /**
@@ -176,8 +178,8 @@ public class ControllerContact {
      * @param tilte
      * @throws IOException 
      */
-    private void CreateDetailContactView(Action action, Contact contact, String tilte) throws IOException
-    {
+    private void CreateDetailContactView(Action action, Contact contact, String tilte, String imagePath) throws IOException
+    {        
         URL location = FXMLAddModiFyContactController.class.getResource("FXMLAddModiFyContact.fxml");
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(location);
@@ -186,6 +188,11 @@ public class ControllerContact {
         controller.InitBeforeShown(this, action, contact);
         stage.setScene(new Scene(root));
         stage.setTitle(tilte);
+        if(!imagePath.isEmpty())
+        {
+            Image img = new Image(CarnetAdresses.class.getResourceAsStream(imagePath));
+            stage.getIcons().add(img);
+        }
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(this.mainStage);
         stage.showAndWait();

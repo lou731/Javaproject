@@ -49,8 +49,6 @@ public class FXMLHomeController implements Initializable {
     @FXML
     private TextField textSearch;
     @FXML
-    private Button buttonAdd;
-    @FXML
     private Button bottonModify;
     @FXML
     private Button buttonSuppress;
@@ -171,7 +169,7 @@ public class FXMLHomeController implements Initializable {
         {
             if (this.tableView.getSelectionModel().getSelectedItems().size() >= 1) 
             {
-                if(UtilsView.ShowConfirmation("Voulez-vous vraiment supprimer les contacts sélectionnés", "Suppression de contacts"))
+                if(UtilsView.ShowConfirmation("Voulez-vous vraiment supprimer les contacts sélectionnés", "Suppression de contacts", "Images/remove.jpg"))
                 {
                     ArrayList<Contact> selectedItems = new ArrayList<>(this.tableView.getSelectionModel().getSelectedItems());
                     selectedItems.forEach((item) -> {

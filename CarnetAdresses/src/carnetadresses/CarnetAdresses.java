@@ -12,6 +12,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -34,6 +35,9 @@ public class CarnetAdresses extends Application {
         stage.addEventHandler(WindowEvent.WINDOW_SHOWN, (WindowEvent window) -> {
             controller.InitHomeController();
         });
+        
+        stage.setTitle("Carnet d'adresses");
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("Images/contact.png")));
         
         Scene scene = new Scene(rootWindow);
         stage.setScene(scene);

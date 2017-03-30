@@ -52,6 +52,8 @@ public class FXMLAddModiFyContactController implements Initializable {
     private TextField tf_emailPerso;
     @FXML
     private Button buttonOk;
+    @FXML
+    private Button buttonCancel;
     
     private Contact contact;
     private Action action;
@@ -88,6 +90,7 @@ public class FXMLAddModiFyContactController implements Initializable {
             case Display:
                 this.contact = contact;
                 this.EnableTextField(false);
+                this.buttonCancel.setVisible(false);
                 this.FillFieldTexts();
                 break;
             case Modify:
@@ -200,101 +203,121 @@ public class FXMLAddModiFyContactController implements Initializable {
         if(this.tf_nom.textProperty().get().isEmpty() || !VerifDatas.controlStr(this.tf_nom.textProperty().get(), 30))
         {
             this.tf_nom.setStyle("-fx-background-color:lightpink");
+            this.tf_nom.setPromptText("Ce champ est requis et doit contenir au maximum 30 caractères");
             correct = false;
         }
         else
         {
             this.tf_nom.setStyle(null);
+            this.tf_nom.setPromptText("");
         }
         
         if(!VerifDatas.controlStr(this.tf_prenom.textProperty().get(), 30))
         {
             this.tf_prenom.setStyle("-fx-background-color:lightpink");
+            this.tf_prenom.setPromptText("Ce champ doit contenir au maximum 30 caractères");
             correct = false;
         }
         else
         {
             this.tf_prenom.setStyle(null);
+            this.tf_prenom.setPromptText("");
         }
         
         if(!VerifDatas.controlStr(this.tf_adresse.textProperty().get(), 50))
         {
             this.tf_adresse.setStyle("-fx-background-color:lightpink");
+            this.tf_adresse.setPromptText("Ce champ doit contenir au maximum 50 caractères");
             correct = false;
         }
         else
         {
             this.tf_adresse.setStyle(null);
+            this.tf_adresse.setPromptText("");
         }
         
         if(!VerifDatas.controlStr(this.tf_complement.textProperty().get(), 50))
         {
             this.tf_complement.setStyle("-fx-background-color:lightpink");
+            this.tf_complement.setPromptText("Ce champ doit contenir au maximum 50 caractères");
             correct = false;
         }
         else
         {
             this.tf_complement.setStyle(null);
+            this.tf_complement.setPromptText("");
         }
         
         if(!VerifDatas.controlStr(this.tf_ville.textProperty().get(), 50))
         {
             this.tf_ville.setStyle("-fx-background-color:lightpink");
+            this.tf_ville.setPromptText("Ce champ doit contenir au maximum 50 caractères");
             correct = false;
         }
         else
         {
             this.tf_ville.setStyle(null);
+            this.tf_ville.setPromptText("");
         }
         
         if(!VerifDatas.VerifyCP(this.tf_codePostal.textProperty().get()))
         {
             this.tf_codePostal.setStyle("-fx-background-color:lightpink");
+            this.tf_codePostal.setPromptText("Ce champ doit contenir 5 chiffres");
             correct = false;
         }
         else
         {
             this.tf_codePostal.setStyle(null);
+            this.tf_codePostal.setPromptText("");
         }
         
         if(!VerifDatas.VeriofyEmail(this.tf_emailPerso.textProperty().get()))
         {
             this.tf_emailPerso.setStyle("-fx-background-color:lightpink");
+            this.tf_emailPerso.setPromptText("Invalide format pour un email");
             correct = false;
         }
         else
         {
             this.tf_emailPerso.setStyle(null);
+            this.tf_emailPerso.setPromptText("");
         }
         
         if(!VerifDatas.VeriofyEmail(this.tf_emailPro.textProperty().get()))
         {
             this.tf_emailPro.setStyle("-fx-background-color:lightpink");
+            this.tf_emailPro.setPromptText("Invalide format pour un email");
             correct = false;
         }
         else
         {
             this.tf_emailPro.setStyle(null);
+            this.tf_emailPro.setPromptText("");
         }
         
         if(!VerifDatas.VerifyTel(this.tf_telPerso.textProperty().get()))
         {
             this.tf_telPerso.setStyle("-fx-background-color:lightpink");
+            this.tf_telPerso.setPromptText("Invalide format pour un téléphone");
             correct = false;
         }
         else
         {
             this.tf_telPerso.setStyle(null);
+            this.tf_telPerso.setPromptText("");
         }
         
         if(!VerifDatas.VerifyTel(this.tf_telPro.textProperty().get()))
         {
             this.tf_telPro.setStyle("-fx-background-color:lightpink");
+            this.tf_telPro.setPromptText("Invalide format pour un téléphone");
             correct = false;
         }
         else
         {
             this.tf_telPro.setStyle(null);
+            this.tf_telPro.setPromptText("");
         }
         
         return correct;
