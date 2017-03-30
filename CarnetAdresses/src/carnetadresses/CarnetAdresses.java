@@ -8,9 +8,7 @@ package carnetadresses;
 import carnetadresses.Controllers.ControllerContact;
 import carnetadresses.Views.FXMLHomeController;
 import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -27,12 +25,12 @@ public class CarnetAdresses extends Application {
     public void start(Stage stage) throws Exception {       
         
         URL location = getClass().getResource("Views/FXMLHome.fxml");
-        //ResourceBundle resources = ResourceBundle.getBundle("com.foo.example");
         FXMLLoader fxmlLoader = new FXMLLoader(location);
         Parent rootWindow = fxmlLoader.load();
         FXMLHomeController controllerHomeDoc = (FXMLHomeController)fxmlLoader.getController();
-        ControllerContact controller = new ControllerContact(controllerHomeDoc);
+        ControllerContact controller = new ControllerContact(controllerHomeDoc, stage);
 
+        // add windows shown event to init data before show the window
         stage.addEventHandler(WindowEvent.WINDOW_SHOWN, (WindowEvent window) -> {
             controller.InitHomeController();
         });

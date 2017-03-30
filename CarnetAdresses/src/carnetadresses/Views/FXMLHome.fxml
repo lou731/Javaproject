@@ -12,7 +12,7 @@
         <URL value="@/carnetadresses/Views/Style/defaultCss.css" />
     </stylesheets>
    <children>
-      <TableView fx:id="tableView" layoutX="32.0" layoutY="33.0" onMouseClicked="#SelectionTablechanged" prefHeight="735.0" prefWidth="805.0" AnchorPane.bottomAnchor="71.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="252.0" AnchorPane.topAnchor="33.0">
+      <TableView fx:id="tableView" layoutX="32.0" layoutY="33.0" prefHeight="735.0" prefWidth="805.0" AnchorPane.bottomAnchor="71.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="252.0" AnchorPane.topAnchor="33.0">
         <columns>
           <TableColumn id="nom" fx:id="cNom" prefWidth="195.0" text="Nom" />
           <TableColumn id="prenom" fx:id="cPrenom" prefWidth="207.0" text="Prénom" />
@@ -23,11 +23,11 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button fx:id="buttonAdd" layoutX="890.0" layoutY="64.0" mnemonicParsing="false" onMouseClicked="#AddContactClicked" text="Ajouter un nouveau contact" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="64.0" />
-      <Button fx:id="buttonSearch" layoutX="689.0" layoutY="786.0" mnemonicParsing="false" onMouseClicked="#SearchClicked" prefHeight="25.0" prefWidth="148.0" text="Rechercher" AnchorPane.bottomAnchor="28.0" AnchorPane.rightAnchor="252.0" />
-      <Button fx:id="bottonModify" layoutX="890.0" layoutY="102.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="164.0" text="Modifier un contact" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="102.0" />
-      <Button fx:id="buttonSuppress" layoutX="890.0" layoutY="141.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="164.0" text="Supprimer un contact" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="141.0" />
-      <TextField fx:id="textSearch" layoutX="32.0" layoutY="786.0" prefHeight="25.0" prefWidth="648.0" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="409.0" />
+      <Button fx:id="buttonAdd" layoutX="890.0" layoutY="67.0" mnemonicParsing="false" onMouseClicked="#AddContactClicked" text="Ajouter un nouveau contact" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="67.0" />
+      <Button fx:id="bottonModify" disable="true" layoutX="890.0" layoutY="101.0" mnemonicParsing="false" onMouseClicked="#ModifyClicked" prefHeight="25.0" prefWidth="164.0" text="Modifier un contact" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="101.0" />
+      <Button fx:id="buttonSuppress" disable="true" layoutX="890.0" layoutY="134.0" mnemonicParsing="false" onMouseClicked="#SuppressClicked" prefHeight="25.0" prefWidth="164.0" text="Supprimer un contact" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="134.0" />
+      <TextField fx:id="textSearch" layoutX="32.0" layoutY="786.0" prefHeight="25.0" prefWidth="805.0" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="252.0" />
       <Button fx:id="buttonClose" layoutX="890.0" layoutY="786.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="164.0" text="Fermer" AnchorPane.bottomAnchor="28.0" AnchorPane.rightAnchor="35.0" />
+      <Button fx:id="buttonDetail" layoutX="890.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#AddContactClicked" prefHeight="25.0" prefWidth="164.0" text="Détail" />
    </children>
 </AnchorPane>

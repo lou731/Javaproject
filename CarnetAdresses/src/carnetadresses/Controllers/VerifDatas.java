@@ -1,5 +1,6 @@
 package carnetadresses.Controllers;
 
+import carnetadresses.Models.Contact;
 import java.util.*;
 
 /**
@@ -10,28 +11,22 @@ public class VerifDatas {
     /**
      * Default constructor
      */
-    public VerifDatas() {
+    public static boolean VerifDataContact(Contact contact) 
+    {
+        return true;
     }
 
     /**
      * @param ret
      */
-    private static void VerifyTel(boolean ret) {
-        // TODO implement here
+    private static boolean VerifyTel(String tel) {
+        return true;
     }
 
     /**
      * @param ret
      */
-    private static void VerifyCP(boolean ret) {
-        // TODO implement here
+    private static boolean VerifyCP(String cp) {
+        return true;
     }
-
-    /**
-     * @param ret
-     */
-    private static void VerifData(boolean ret) {
-        // TODO implement here
-    }
-
 }

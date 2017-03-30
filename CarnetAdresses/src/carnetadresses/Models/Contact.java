@@ -3,7 +3,7 @@ package carnetadresses.Models;
 /**
  * Model for contact
  */
-public class Contact {
+public class Contact implements Cloneable{
 
     private long id;
     /**
@@ -218,5 +218,27 @@ public class Contact {
     public void setId(long id) {
         this.id = id;
     }
-
+    
+    /**
+     * clone the current object.
+     * @return 
+     */
+    @Override
+    public Object clone() throws CloneNotSupportedException 
+    {
+        Object o = null;
+        try 
+        {
+            // On récupère l'instance à renvoyer par l'appel de la 
+            // méthode super.clone()
+            o = super.clone();
+        } catch(CloneNotSupportedException cnse) 
+        {
+                // Ne devrait jamais arriver car nous implémentons 
+                // l'interface Cloneable
+                cnse.printStackTrace(System.err);
+        }
+        // on renvoie le clone
+        return o;
+    }
 }

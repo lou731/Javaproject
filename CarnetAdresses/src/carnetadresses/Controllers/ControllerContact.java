@@ -6,7 +6,9 @@ import carnetadresses.Models.Contact;
 import carnetadresses.Views.Action;
 import carnetadresses.Views.FXMLAddModiFyContactController;
 import carnetadresses.Views.FXMLHomeController;
+import carnetadresses.Views.UtilsView;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.*;
 import javafx.collections.FXCollections;
@@ -23,6 +25,11 @@ import javafx.stage.Stage;
  * 
  */
 public class ControllerContact {
+    
+    /**
+     * The main stage of the applcation
+     */
+    private Stage mainStage;
     
     /**
      * Home controller windows
@@ -44,9 +51,18 @@ public class ControllerContact {
      * @param controllerHomeDoc
      * @throws java.sql.SQLException
      */
-    public ControllerContact(FXMLHomeController controllerHomeDoc) throws SQLException {
+    public ControllerContact(FXMLHomeController controllerHomeDoc, Stage mainStage) throws SQLException {
         this(new AccesData());
         this.controllerHomeDoc = controllerHomeDoc;
+        this.mainStage = mainStage;
+    }
+        
+    /**
+     * Constructor used for testing
+     * @param accessData
+     */
+    public ControllerContact(IAccessData accessData) {
+        this.accessData = accessData;
     }
     
     /**
@@ -61,68 +77,89 @@ public class ControllerContact {
     
     /**
      * Add new contact show the new windows 
-     * @param event
      * @throws IOException 
      */
-    public void AddContact(Event event) throws IOException
+    public void AddContactForm() throws IOException
     {
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(FXMLAddModiFyContactController.class.getResource("FXMLAddModiFyContact.fxml"));
-        stage.setScene(new Scene(root));
-        stage.setTitle("Ajout d'un nouveau contact");
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(((Node)event.getSource()).getScene().getWindow() );
-        stage.showAndWait();
+        this.CreateDetailContactView(Action.Add, new Contact(), "Ajout d'un nouveau contact");        
     }
     
     /**
-     * Constructor used for testing
-     * @param accessData
-     */
-    public ControllerContact(IAccessData accessData) {
-        this.accessData = accessData;
-    }
-
-    /**
-     * @param action
-     */
-    public void CreateAddModifyForm(Action action) {
-        // TODO implement here
-    }
-
-    /**
+     * Modify existing contact.
      * @param contact
+     * @throws java.lang.Exception
      */
-    public void CreateAddModifyForm(Contact contact) {
-        // TODO implement here
+    public void ModifyContactForm(Contact contact) throws Exception 
+    {
+        this.CreateDetailContactView(Action.Modify, contact, "Modification du contact : " + contact.getNom());        
     }
 
     /**
      * @param ids
      */
-    public void SuppressContact(List<Integer> ids) {
-        // TODO implement here
+    public void SuppressContact(Contact contact) 
+    {
+        //UtilsView.ShowAlert(, message, title);
     }
 
     /**
+     * Add contact in database and update local observable list
      * @param contact
+     * @return 
      */
-    public void AddContact(Contact contact) {
-        // TODO implement here
-    }
-
+    public Contact AddContact(Contact contact) throws Exception 
+    {
+        Contact contactAdded = this.accessData.AddContact(contact);
+        if(null != contactAdded)
+        {
+            this.contacts.add(contactAdded);
+        }
+        else
+        {
+            throw new Exception("Error occurs while saving contact.");
+        }
+        
+        return contactAdded;
+    }  
+    
     /**
+     * Modify existing contact.
      * @param contact
+     * @throws java.lang.Exception
      */
-    public void ModifyContact(Contact contact) {
-        // TODO implement here
+    public void ModifyContact(Contact contact) throws Exception 
+    {
+        boolean correct = this.accessData.ModifyContact(contact);
+        if(!correct)
+        {
+            throw new Exception("Error occurs while saving contact.");
+        }
+        else
+        {
+            int index = this.contacts.indexOf(contact);
+            this.contacts.set(index, (Contact)contact.clone());
+        }
     }
-
+        
     /**
-     * 
+     * Create add or modify conatc form
+     * @param action
+     * @param contact
+     * @param tilte
+     * @throws IOException 
      */
-    public void FilterContact() {
-        // TODO implement here
+    private void CreateDetailContactView(Action action, Contact contact, String tilte) throws IOException
+    {
+        URL location = FXMLAddModiFyContactController.class.getResource("FXMLAddModiFyContact.fxml");
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(location);
+        Parent root = fxmlLoader.load();
+        FXMLAddModiFyContactController controller = (FXMLAddModiFyContactController)fxmlLoader.getController();
+        controller.InitBeforeShown(this, action, contact);
+        stage.setScene(new Scene(root));
+        stage.setTitle(tilte);
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(this.mainStage);
+        stage.showAndWait();
     }
-
 }

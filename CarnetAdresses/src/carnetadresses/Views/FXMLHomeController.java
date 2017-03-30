@@ -10,19 +10,16 @@ import carnetadresses.Models.Contact;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -47,13 +44,23 @@ public class FXMLHomeController implements Initializable {
     private TableColumn cMail;
     @FXML
     private TextField textSearch;
+    @FXML
+    private Button buttonAdd;
+    @FXML
+    private Button bottonModify;
+    @FXML
+    private Button buttonSuppress;
+    @FXML
+    private Button buttonClose;
+    @FXML
+    private Button buttonDetail;    
     
     private ControllerContact controller;
-    private Contact selectedContact;
-    
     
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -62,6 +69,11 @@ public class FXMLHomeController implements Initializable {
         this.cPrenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         this.cTel.setCellValueFactory(new PropertyValueFactory<>("tel1"));
         this.cMail.setCellValueFactory(new PropertyValueFactory<>("mail1"));
+        
+        this.tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        this.tableView.getSelectionModel().getSelectedItems().addListener((ListChangeListener.Change c) -> {
+            SelectionTablechanged(c);
+        });
     }
 
     /**
@@ -107,45 +119,74 @@ public class FXMLHomeController implements Initializable {
     }
     
     /**
-     * Show new windows
+     * Add new contact button click
      * @param e 
      * @throws java.io.IOException 
      */
     @FXML protected void AddContactClicked(MouseEvent e) throws IOException 
     {
-        this.controller.AddContact(e);
-        this.tableView.selectionModelProperty();
-    }
-    
-    @FXML protected void SearchClicked()
-    {
-        
+        try 
+        {
+            this.controller.AddContactForm();
+        }
+        catch (IOException iOException) 
+        {
+            UtilsView.ShowAlert(Alert.AlertType.ERROR, iOException.getMessage(), "Erreur sur ajout");
+        }
     }
     
     /**
-     * Slect contact in grid
+     * Modify contact button click
      * @param e 
+     * @throws java.io.IOException 
      */
-    @FXML protected void SelectionTablechanged(MouseEvent e)
+    @FXML protected void ModifyClicked(MouseEvent e) throws IOException, Exception 
     {
-        Node node = ((Node) e.getTarget()).getParent();
-        TableRow row;
-        if (node instanceof TableRow) 
+        try 
         {
-            row = (TableRow) node;
-        } else 
-        {            
-            // clicking on text part
-            row = (TableRow) node.getParent();
-        }
-        
-        if(null != row)
+            if (this.tableView.getSelectionModel().getSelectedItems().size() == 1) 
+            {
+                this.controller.ModifyContactForm((Contact) this.tableView.getSelectionModel().getSelectedItem());
+            }
+        } 
+        catch (Exception exception) 
         {
-            this.selectedContact = (Contact)row.getItem();
+            UtilsView.ShowAlert(Alert.AlertType.ERROR, exception.getMessage(), "Erreur sur modification");
         }
-        else
+    }
+    
+    /**
+     * Supress contact
+     * @param e 
+     * @throws java.io.IOException 
+     */
+    @FXML protected void SuppressClicked(MouseEvent e) throws IOException 
+    {
+        try 
         {
-            this.selectedContact = null;
+            if (this.tableView.getSelectionModel().getSelectedItems().size() >= 1) 
+            {
+                ObservableList<Contact> selectedItems = this.tableView.getSelectionModel().getSelectedItems();
+                selectedItems.forEach((item) -> {
+                    this.controller.SuppressContact(item);
+                });
+            }
+        } 
+        catch (Exception exception) 
+        {
+            UtilsView.ShowAlert(Alert.AlertType.ERROR, exception.getMessage(), "Erreur sur modification");
         }
+    }
+    
+    /**
+     * Select contact in grid 
+     * @param c
+     */
+    @FXML protected void SelectionTablechanged(ListChangeListener.Change c)
+    {
+        int count = c.getList().size();
+        this.buttonSuppress.setDisable(count == 0);
+        this.bottonModify.setDisable(count != 1);
+        this.buttonDetail.setDisable(count != 1);
     }
 }
