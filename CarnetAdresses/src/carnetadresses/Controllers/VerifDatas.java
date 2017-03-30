@@ -28,7 +28,7 @@ public class VerifDatas {
     {
         if(tel != null && !tel.isEmpty())
         {
-            Pattern pat=Pattern.compile("^(0|\\+33)[1-9]([-. ]?(0-9){2}){4}$");
+            Pattern pat=Pattern.compile("^(0|\\+33)[1-9]([0-9]{2}){4}$");
             Matcher regok=pat.matcher(tel);
             if(regok.find())
             {
