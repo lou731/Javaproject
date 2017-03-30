@@ -65,7 +65,7 @@ public class Contact implements Cloneable{
     
 
     /**
-     * @return
+     * @return contact name
      */
     public String getNom() {
         // TODO implement here
@@ -73,133 +73,133 @@ public class Contact implements Cloneable{
     }
 
     /**
-     * @param value
+     * @param value contact name
      */
     public void setNom(String value) {
         this.nom = value;
     }
 
     /**
-     * @return
+     * @return contact prenom
      */
     public String getPrenom() {
         return this.prenom;
     }
 
     /**
-     * @param value
+     * @param value precnom contact
      */
     public void setPrenom(String value) {
         this.prenom = value;
     }
 
     /**
-     * @return
+     * @return contact rue
      */
     public String getRue() {
         return this.rue;
     }
 
     /**
-     * @param value
+     * @param value contact rue
      */
     public void setRue(String value) {
         this.rue = value;
     }
 
     /**
-     * @return
+     * @return contact complement 
      */
     public String getComplement() {
         return this.complement;
     }
 
     /**
-     * @param value
+     * @param value contact complement
      */
     public void setComplement(String value) {
         this.complement = value;
     }
 
     /**
-     * @return
+     * @return contact cp
      */
     public String getCp() {
         return this.cp;
     }
 
     /**
-     * @param value
+     * @param value contact cp
      */
     public void setCp(String value) {
         this.cp = value;
     }
 
     /**
-     * @return
+     * @return contact ville
      */
     public String getVille() {
         return this.ville;
     }
 
     /**
-     * @param value
+     * @param value contact ville
      */
     public void setVille(String value) {
         this.ville = value;
     }
 
     /**
-     * @return
+     * @return contact tel1
      */
     public String getTel1() {
         return this.tel1;
     }
 
     /**
-     * @param value
+     * @param value cintact tel1
      */
     public void setTel1(String value) {
         this.tel1 = value;
     }
 
     /**
-     * @return
+     * @return contact tel2
      */
     public String getTel2() {
         return this.tel2;
     }
 
     /**
-     * @param value
+     * @param value contact tel2
      */
     public void setTel2(String value) {
         this.tel2 = value;
     }
 
     /**
-     * @return
+     * @return contact mail1
      */
     public String getMail1() {
         return this.mail1;
     }
 
     /**
-     * @param value
+     * @param value contact mail1
      */
     public void setMail1(String value) {
         this.mail1 = value;
     }
 
     /**
-     * @return
+     * @return contact mail2
      */
     public String getMail2() {
         return this.mail2;
     }
 
     /**
-     * @param value
+     * @param value contact mail2
      */
     public void setMail2(String value) {
         this.mail2 = value;
@@ -221,7 +221,8 @@ public class Contact implements Cloneable{
     
     /**
      * clone the current object.
-     * @return 
+     * @return cloned object
+     * @throws java.lang.CloneNotSupportedException
      */
     @Override
     public Object clone() throws CloneNotSupportedException 

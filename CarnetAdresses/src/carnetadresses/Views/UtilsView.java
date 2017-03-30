@@ -22,9 +22,9 @@ public class UtilsView
 
     /**
      * Show an alert
-     * @param type
-     * @param message
-     * @param title 
+     * @param type alert type
+     * @param message message to display
+     * @param title title of alert
      */
     public static void ShowAlert(Alert.AlertType type, String message, String title)
     {
@@ -39,10 +39,10 @@ public class UtilsView
 
     /**
      * Show confirmation alert
-     * @param message
-     * @param title
-     * @param imagePath
-     * @return 
+     * @param message to display
+     * @param title of alert
+     * @param imagePath path of icon
+     * @return true if ok click, false otherwise
      */
     public static boolean ShowConfirmation(String message, String title, String imagePath)
     {

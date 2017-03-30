@@ -9,43 +9,43 @@ import java.util.*;
 public interface IAccessData {
 
     /**
-     * récuperer liste contact
-     * @return 
+     * Get all contacts
+     * @return list of all contacts
      */
     public ArrayList<Contact> GetContacts();
     
     /**
-     * chercher un contact dont le nom et prenom est dans la chaine
-     * @param search
-     * @return 
+     * Search contacts
+     * @param search, string to search in prenom or nom
+     * @return List og found contacts
      */
     public ArrayList<Contact> GetContacts(String search);
     
     /**
-     * chercher un contact par son id
-     * @param id
-     * @return 
+     * Get a contact by id
+     * @param id contact
+     * @return contact found, null otherwise
      */
     public Contact GetContact(long id);
 
     /**
-     * supprime contact par son id
-     * @param id
-     * @return 
+     * Remove contact by its id
+     * @param id contact
+     * @return true if removed, false if error occurs
      */
     public boolean SupressContact(long id);
 
     /**
-     * modifie contact
-     * @param contact
-     * @return 
+     * Modify specified contact
+     * @param contact to modify
+     * @return true if success, false otherwise
      */
     public boolean ModifyContact(Contact contact);
 
     /**
-     * ajoute contact et retourne contact mis a jour avec ID rempli
-     * @param contact
-     * @return 
+     * Add new contact
+     * @param contact to add
+     * @return contact added with its id filled, null if error occurs
      */
     public Contact AddContact(Contact contact);
 

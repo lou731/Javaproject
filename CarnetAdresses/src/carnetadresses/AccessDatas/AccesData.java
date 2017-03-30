@@ -31,7 +31,8 @@ public class AccesData implements IAccessData
     }
     
     /**
-     * @param connection
+     * Constructor used for testing
+     * @param connection builded connection
      */
     public AccesData(Connection connection)
     {
@@ -60,9 +61,10 @@ public class AccesData implements IAccessData
         }
     }
     
-        /**
-     * @param id
-     * @return 
+    /**
+     * Get a contact by id
+     * @param id contact
+     * @return contact found, null otherwise
      */
    @Override
     public Contact GetContact(long id)
@@ -92,6 +94,10 @@ public class AccesData implements IAccessData
         return contact;
     }
 
+    /**
+     * Get all contacts
+     * @return list of all contacts
+     */
     @Override
     public ArrayList<Contact> GetContacts() 
     {
@@ -125,8 +131,9 @@ public class AccesData implements IAccessData
     }
     
     /**
-     * @param search
-     * @return 
+     * Search contacts
+     * @param search, string to search in prenom or nom
+     * @return List og found contacts
      */
    @Override
     public ArrayList<Contact> GetContacts(String search)
@@ -163,6 +170,11 @@ public class AccesData implements IAccessData
         return contacts;
 }
 
+    /**
+     * Remove contact by its id
+     * @param id contact
+     * @return true if removed, false if error occurs
+     */
     @Override
     public boolean SupressContact(long id) {
         if(null != this.connection)
@@ -186,6 +198,11 @@ public class AccesData implements IAccessData
         return false;
     }
 
+    /**
+     * Modify specified contact
+     * @param contact to modify
+     * @return true if success, false otherwise
+     */
     @Override
     public boolean ModifyContact(Contact contact) 
     {
@@ -212,6 +229,11 @@ public class AccesData implements IAccessData
         return false;
     }
 
+    /**
+     * Add new contact
+     * @param contact to add
+     * @return contact added with its id filled, null if error occurs
+     */
     @Override
     public Contact AddContact(Contact contact) {
         Contact ret = null;
@@ -240,7 +262,13 @@ public class AccesData implements IAccessData
         
         return ret;
     }
-        
+     
+    /**
+     * Fill contact fileds
+     * @param result of sql request
+     * @return created contact
+     * @throws SQLException 
+     */
     private Contact FillContact(ResultSet result) throws SQLException
     {
         Contact contact = new Contact();
@@ -258,6 +286,13 @@ public class AccesData implements IAccessData
         return contact;
     }
     
+    /**
+     * Fill preparedStatement with contact field
+     * @param stmt preparestatement to fill
+     * @param contact to inspect
+     * @param withId true if id must be filled, false otherwise
+     * @throws SQLException 
+     */
     private void UpdatePrepareStatement(PreparedStatement stmt, Contact contact, boolean withId) throws SQLException 
     {
         stmt.setString(1, contact.getNom());

@@ -61,8 +61,8 @@ public class FXMLHomeController implements Initializable {
     
     /**
      * Initializes the controller class.
-     * @param url
-     * @param rb
+     * @param url ???
+     * @param rb ???
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -83,8 +83,8 @@ public class FXMLHomeController implements Initializable {
 
     /**
      * Init controller with complete list of contact before shown windows
-     * @param controller
-     * @param contacts 
+     * @param controller contacts controller
+     * @param contacts list of contacts retrieve from db
      */
     public void InitBeforeShown(ControllerContact controller, ObservableList<Contact> contacts)
     {
@@ -125,7 +125,7 @@ public class FXMLHomeController implements Initializable {
     
     /**
      * Edit contact by double click
-     * @param e 
+     * @param e param event
      */
     protected void TableViewClicked(MouseEvent e) 
     {
@@ -137,7 +137,7 @@ public class FXMLHomeController implements Initializable {
     
     /**
      * Add new contact button click
-     * @param e 
+     * @param e param event
      * @throws java.io.IOException 
      */
     @FXML protected void AddContactClicked(MouseEvent e) throws IOException 
@@ -154,8 +154,7 @@ public class FXMLHomeController implements Initializable {
     
     /**
      * Modify contact button click
-     * @param e 
-     * @throws java.io.IOException 
+     * @param e param event 
      */
     @FXML protected void ModifyClicked(MouseEvent e)
     {
@@ -174,7 +173,7 @@ public class FXMLHomeController implements Initializable {
     
     /**
      * Supress contact
-     * @param e 
+     * @param e param event
      * @throws java.io.IOException 
      */
     @FXML@SuppressWarnings("empty-statement") 
@@ -209,7 +208,7 @@ public class FXMLHomeController implements Initializable {
         
     /**
      * Close application
-     * @param e 
+     * @param e param event
      */
     @FXML protected void DetailContactClicked(MouseEvent e)
     {
@@ -228,7 +227,7 @@ public class FXMLHomeController implements Initializable {
     
     /**
      * Select contact in grid 
-     * @param c
+     * @param c param event
      */
     @FXML protected void SelectionTablechanged(ListChangeListener.Change c)
     {
@@ -240,7 +239,7 @@ public class FXMLHomeController implements Initializable {
         
     /**
      * Close application
-     * @param e 
+     * @param e param event
      */
     @FXML protected void CloseApplication(MouseEvent e)
     {

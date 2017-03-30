@@ -9,20 +9,21 @@ import java.util.regex.*;
  */
 public class VerifDatas {
     
+    /**
+     * Verify lenght string
+     * @param chaine string to test
+     * @param Longueur string lenght
+     * @return true if good format, false otherwise
+     */
     public static boolean controlStr(String chaine, int Longueur)
     {
-         if(chaine == null || chaine.length() < Longueur+1)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return chaine == null || chaine.length() < Longueur+1;
     }
     
     /**
-     * @param ret
+     * Verify tel format
+     * @param tel to verify
+     * @return true if good format, false otherwise
      */
     public static boolean VerifyTel(String tel) 
     {
@@ -44,7 +45,9 @@ public class VerifDatas {
     }
 
     /**
-     * @param ret
+     * Verify cp format
+     * @param cp to verify
+     * @return true if good format, false otherwise
      */
     public static boolean VerifyCP(String cp) 
     {
@@ -52,33 +55,24 @@ public class VerifDatas {
         {
             Pattern pat=Pattern.compile("^[0-9]{5}$");
             Matcher regok=pat.matcher(cp);
-            if(regok.find())
-            {
-                 return true;
-            }
-            else
-            {
-                 return false;
-            }
+            return regok.find();
         }
         
         return true;
     }
     
+    /**
+     * Verify email format
+     * @param email to verify
+     * @return true if good format, false otherwise
+     */
     public static boolean VeriofyEmail(String email)
     {
         if(email != null && !email.isEmpty())
         {
             Pattern pat=Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
             Matcher regok=pat.matcher(email);
-            if(regok.find())
-            {
-                 return true;
-            }
-            else
-            {
-                 return false;
-            }
+            return regok.find();
         }
         
         return true;

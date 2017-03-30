@@ -50,7 +50,8 @@ public class ControllerContact {
     
     /**
      * Default constructor use for application
-     * @param controllerHomeDoc
+     * @param controllerHomeDoc controller of main form
+     * @param mainStage first main stage
      * @throws java.sql.SQLException
      */
     public ControllerContact(FXMLHomeController controllerHomeDoc, Stage mainStage) throws SQLException {
@@ -61,7 +62,7 @@ public class ControllerContact {
         
     /**
      * Constructor used for testing
-     * @param accessData
+     * @param accessData build accesdata
      */
     public ControllerContact(IAccessData accessData) {
         this.accessData = accessData;
@@ -88,7 +89,7 @@ public class ControllerContact {
     
      /**
      * Show detail contact 
-     * @param contact
+     * @param contact to display
      * @throws IOException 
      */
     public void DetailContactForm(Contact contact) throws IOException
@@ -98,7 +99,7 @@ public class ControllerContact {
     
     /**
      * Modify existing contact.
-     * @param contact
+     * @param contact to modify
      * @throws java.lang.Exception
      */
     public void ModifyContactForm(Contact contact) throws Exception 
@@ -107,7 +108,7 @@ public class ControllerContact {
     }
 
     /**
-     * @param contact
+     * @param contact to remove
      * @throws java.lang.Exception
      */
     public void SuppressContact(Contact contact) throws Exception 
@@ -127,8 +128,8 @@ public class ControllerContact {
 
     /**
      * Add contact in database and update local observable list
-     * @param contact
-     * @return 
+     * @param contact to add
+     * @return  added contact
      */
     public Contact AddContact(Contact contact) throws Exception 
     {
@@ -151,7 +152,7 @@ public class ControllerContact {
     
     /**
      * Modify existing contact.
-     * @param contact
+     * @param contact to modify
      * @throws java.lang.Exception
      */
     public void ModifyContact(Contact contact) throws Exception 

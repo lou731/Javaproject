@@ -62,8 +62,8 @@ public class FXMLAddModiFyContactController implements Initializable {
     
     /**
      * Initializes the controller class.
-     * @param url
-     * @param rb
+     * @param url ??
+     * @param rb ??
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -72,9 +72,9 @@ public class FXMLAddModiFyContactController implements Initializable {
     
     /**
      * Init form before show it.
-     * @param controller
-     * @param action
-     * @param contact 
+     * @param controller controller of contacts
+     * @param action to perform
+     * @param contact contact to display
      */
     public void InitBeforeShown(ControllerContact controller, Action action, Contact contact)
     {
@@ -155,7 +155,7 @@ public class FXMLAddModiFyContactController implements Initializable {
 
     /**
      * Validate changes
-     * @param e 
+     * @param e event param
      */
     @FXML protected void OkClicked(MouseEvent e)
     {
@@ -338,7 +338,7 @@ public class FXMLAddModiFyContactController implements Initializable {
     
     /**
      * Cancel changes
-     * @param e 
+     * @param e event param
      */
     @FXML protected void CancelClicked(MouseEvent e) 
     {
